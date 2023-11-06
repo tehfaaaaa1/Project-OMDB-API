@@ -5,12 +5,13 @@ plugins {
 
 android {
     namespace = "com.example.projectapiomdb"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.projectapiomdb"
         minSdk = 29
-        targetSdk = 33
+        //noinspection EditedTargetSdkVersion
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
