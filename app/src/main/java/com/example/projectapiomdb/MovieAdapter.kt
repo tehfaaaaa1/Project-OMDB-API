@@ -1,5 +1,7 @@
 package com.example.projectapiomdb
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.projectapiomdb.databinding.ListDatamovieBinding
 import com.example.projectapiomdb.model.MovieData
 
-class MovieAdapter (private val listMovie: ArrayList<MovieData>)
+class MovieAdapter (private val listMovie: ArrayList<MovieData>, private val context: Context)
     : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
 
     inner class MovieViewHolder(itemView: ListDatamovieBinding)
@@ -18,6 +20,12 @@ class MovieAdapter (private val listMovie: ArrayList<MovieData>)
                     Glide.with(itemView).load(movieData.Image).into(imgPoster)
                     tvTitle.text = movieData.Title
                     tvYear.text = movieData.Year
+
+                    cvIdMovie.setOnClickListener {
+                        var i = Intent(context, DetailActivity::class.java).apply {
+                            putExtra("imdbid", movieData.idMovie)
+                        }
+                    }
                 }
             }
         }

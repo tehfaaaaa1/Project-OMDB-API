@@ -53,7 +53,7 @@ class DataFragment : Fragment() {
                 var cekRes = response.body()?.res
                 if (cekRes == "True") {
                     response.body()?.let { list.addAll(it.data) }
-                    val adapter = MovieAdapter(list)
+                    val adapter = MovieAdapter(list, requireContext())
                     binding.rvData.adapter = adapter
                 } else {
                     Toast.makeText(context, "Movie not found", Toast.LENGTH_LONG).show()

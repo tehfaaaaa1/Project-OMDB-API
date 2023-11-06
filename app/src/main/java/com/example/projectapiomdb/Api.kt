@@ -11,4 +11,8 @@ interface Api {
         @Query("s") s :String?,
         @Query("apikey") apikey : String
     ): Call<SearchData>
+    fun getDetailMovie(
+        @Query("i") title:String?,
+        @Query("apikey") apikey: String
+    )
 }
