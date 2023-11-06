@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectapiomdb.MovieAdapter
 import com.example.projectapiomdb.R
@@ -42,13 +43,21 @@ class DataFragment : Fragment() {
         binding.rvData.setHasFixedSize(true)
         binding.rvData.layoutManager = LinearLayoutManager(context)
 
-        RClient.instances.getMovies().enqueue(object : Callback<SearchData>{
-            override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
-                val responseCode = response.code()
+        val bundle = arguments
+        val s = bundle?.getString("carimovie")
+        val apikey = "d38cd682"
 
-                response.body()?.let { list.addAll(it.data) }
-                val adapter = MovieAdapter(list)
-                binding.rvData.adapter = adapter
+        RClient.instances.getMovies(s, apikey).enqueue(object : Callback<SearchData>{
+            override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
+//                val responseCode = response.code()
+                var cekRes = response.body()?.res
+                if (cekRes == "True") {
+                    response.body()?.let { list.addAll(it.data) }
+                    val adapter = MovieAdapter(list)
+                    binding.rvData.adapter = adapter
+                } else {
+                    Toast.makeText(context, "Movie not found", Toast.LENGTH_LONG).show()
+                }
             }
 
             override fun onFailure(call: Call<SearchData>, t: Throwable) {
