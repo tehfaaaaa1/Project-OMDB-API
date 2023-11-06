@@ -1,5 +1,6 @@
 package com.example.projectapiomdb
 
+import com.example.projectapiomdb.model.MovieDetailData
 import com.example.projectapiomdb.model.SearchData
 import retrofit2.Call
 import retrofit2.http.GET
@@ -14,5 +15,5 @@ interface Api {
     fun getDetailMovie(
         @Query("i") title:String?,
         @Query("apikey") apikey: String
-    )
+    ): Call<MovieDetailData>
 }

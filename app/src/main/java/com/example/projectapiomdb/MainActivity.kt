@@ -29,6 +29,6 @@ class MainActivity : AppCompatActivity() {
         mBundle.putString("carimovie", textCari.toString())
         mFragment.arguments = mBundle
 
-        mFragmentTransaction.add(R.id.fl_data,mFragment).commit()
+        mFragmentTransaction.replace(R.id.fl_data,mFragment).commit()
     }
 }
