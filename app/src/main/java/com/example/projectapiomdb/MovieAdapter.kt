@@ -25,6 +25,7 @@ class MovieAdapter (private val listMovie: ArrayList<MovieData>, private val con
                         var i = Intent(context, DetailActivity::class.java).apply {
                             putExtra("imdbid", movieData.idMovie)
                         }
+                        context.startActivity(i)
                     }
                 }
             }
